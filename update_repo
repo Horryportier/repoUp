@@ -9,12 +9,15 @@ list=""
 
 repos=()
 
+# put your paths to yours repos here
 repos[0]="/home/$(whoami)/Documents/CheatSheet"
 repos[1]="/home/$(whoami)/Documents/dotfiles"
+repos[2]="/home/$(whoami)/Documents/update_repos"
 
 
 autoUpdate=()
 
+# put your paths to yours repos that you want to update on schedule here
 autoUpdate[0]="${repos[0]}"
 autoUpdate[1]="${repos[1]}"
 
@@ -23,6 +26,9 @@ pull(){
 }
 
 push(){
+        if [[ -z "$msg" ]]; then
+                msg=$(date)
+        fi
         echo -e "$(git add .)"
         echo -e "$(git commit -m "$msg")"
         echo -e "$(git push origin main)"
@@ -54,6 +60,7 @@ choose() {
         readarray -t items <<< "$list"
         for i in "${items[@]}"; do
                 echo -e "\033[1;32m$i\033[0m"
+                msg=$(gum input --placeholder "commit msg")
                 cd "$i"
                 pull
                 push
