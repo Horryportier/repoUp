@@ -15,8 +15,8 @@ repos[1]="/home/$(whoami)/Documents/dotfiles"
 
 autoUpdate=()
 
-autoUpdate[0]=repos[0]
-autoUpdate[1]=repos[1]
+autoUpdate[0]="${repos[0]}"
+autoUpdate[1]="${repos[1]}"
 
 pull(){
         echo -e "$(git pull)"
