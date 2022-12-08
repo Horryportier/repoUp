@@ -1,0 +1,63 @@
+#! /bin/bash
+
+msg="$(date)"
+
+help=$(echo -e "# How to Use\n\n ___\n-h | --help for help\n-a | --all to update all\n-l | --list to choose from list\n" | gum format -t markdown)
+
+list=""
+
+
+repos=()
+
+repos[0]="/home/$(whoami)/Documents/CheatSheet"
+repos[1]="/home/$(whoami)/Documents/dotfiles"
+
+
+pull(){
+        echo -e "$(git pull)"
+}
+
+push(){
+        echo -e "$(git add .)"
+        echo -e "$(git commit -m "$msg")"
+        echo -e "$(git push origin main)"
+}
+
+
+all() {
+        for i in "${repos[@]}"; do
+                echo -e "\033[1;32m$i\033[0m"
+                cd "$i"
+                pull
+                push
+        done
+}
+
+choose() {
+        list=$(gum choose --no-limit ${repos[@]})
+        readarray -t items <<< "$list"
+        for i in "${items[@]}"; do
+                echo -e "\033[1;32m$i\033[0m"
+                cd "$i"
+                pull
+                push
+        done
+}
+
+while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
+        -a | --all )
+        all
+        exit
+        ;;
+-h | --help )
+        echo -e $help
+        exit
+        ;;
+-l | --list )
+        choose
+        exit
+        ;;
+esac; shift; done
+if [[ "$1" == '--' ]]; then shift; fi
+
+
