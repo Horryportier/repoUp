@@ -13,6 +13,11 @@ repos[0]="/home/$(whoami)/Documents/CheatSheet"
 repos[1]="/home/$(whoami)/Documents/dotfiles"
 
 
+autoUpdate=()
+
+autoUpdate[0]=repos[0]
+autoUpdate[1]=repos[1]
+
 pull(){
         echo -e "$(git pull)"
 }
@@ -25,13 +30,24 @@ push(){
 
 
 all() {
-        for i in "${repos[@]}"; do
+        for i in "${repose[@]}"; do
                 echo -e "\033[1;32m$i\033[0m"
                 cd "$i"
                 pull
                 push
         done
 }
+auto() {
+        for i in "${autoUpdate[@]}"; do
+                echo -e "\033[1;32m$i\033[0m"
+                cd "$i"
+                pull
+                push
+        done
+}
+
+
+
 
 choose() {
         list=$(gum choose --no-limit ${repos[@]})
@@ -55,6 +71,10 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
         ;;
 -l | --list )
         choose
+        exit
+        ;;
+-d | --daily )
+        auto
         exit
         ;;
 esac; shift; done
