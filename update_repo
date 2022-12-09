@@ -33,7 +33,7 @@ printStyle() {
 }
 
 pull(){
-        printStyle "Pull\n$(git pull)"
+        printStyle "Pull$(git pull)"
 }
 
 push(){
@@ -41,9 +41,9 @@ push(){
                 msg=$(date)
         fi
         git add .
-        val="Commit\n$(git commit -m "$msg")"
+        val="Commit$(git commit -m "$msg")"
         printStyle "$val"
-        val="Push\n$(echo $(git push origin main))"
+        val="Push$(echo $(git push origin main))"
 }
 
 
