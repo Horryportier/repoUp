@@ -7,6 +7,7 @@ help=$(echo -e "# How to Use\n\n ___\n-h | --help for help\n-a | --all to update
 list=""
 
 
+
 repos=()
 
 # put your paths to yours repos here
@@ -21,17 +22,23 @@ autoUpdate=()
 autoUpdate[0]="${repos[0]}"
 autoUpdate[1]="${repos[1]}"
 
+
+printStyle() {
+        style=$(gum style --padding "1 5" --border double --border-foreground 212 "$1")
+        echo -e "$style"
+}
+
 pull(){
-        echo -e "$(git pull)"
+        printStyle "$(git pull)"
 }
 
 push(){
         if [[ -z "$msg" ]]; then
                 msg=$(date)
         fi
-        echo -e "$(git add .)"
-        echo -e "$(git commit -m "$msg")"
-        echo -e "$(git push origin main)"
+        printStyle "$(git add .)"
+        printStyle "$(git commit -m "$msg")"
+        printStyle "$(git push origin main)"
 }
 
 
@@ -68,7 +75,7 @@ choose() {
 }
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
-        -a | --all )
+-a | --all )
         all
         exit
         ;;
