@@ -25,7 +25,9 @@ autoUpdate[1]="${repos[1]}"
 
 printStyle() {
         style=$(gum style --padding "1 5" --border double --border-foreground 249 "$1")
+        if [[ -n "$style" ]]; then 
         echo -e "$style"
+        fi
 }
 
 pull(){
@@ -37,8 +39,8 @@ push(){
                 msg=$(date)
         fi
         "$(git add .)"
-        printStyle "$(git commit -m "$msg")"
-        printStyle "$(git push origin main)"
+        printStyle "${git commit -m "$msg"}"
+        printStyle "${git push origin main}"
 }
 
 
