@@ -38,7 +38,7 @@ push(){
         if [[ -z "$msg" ]]; then
                 msg=$(date)
         fi
-        "$(git add .)"
+        printStyle "$(git add .)"
         out="$(git commit -m "$msg")"
         printStyle "$out"
         out="$(git push origin main)"
