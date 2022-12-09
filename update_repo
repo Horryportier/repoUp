@@ -39,8 +39,10 @@ push(){
                 msg=$(date)
         fi
         "$(git add .)"
-        printStyle "${git commit -m "$msg"}"
-        printStyle "${git push origin main}"
+        out="$(git commit -m "$msg")"
+        printStyle "$out"
+        out="$(git push origin main)"
+        printStyle "$out"
 }
 
 
