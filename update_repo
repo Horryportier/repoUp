@@ -24,7 +24,7 @@ autoUpdate[1]="${repos[1]}"
 
 
 printStyle() {
-        style=$(gum style --padding "1 5" --border double --border-foreground 212 "$1")
+        style=$(gum style --padding "1 5" --border double --border-foreground 249 "$1")
         echo -e "$style"
 }
 
@@ -36,14 +36,14 @@ push(){
         if [[ -z "$msg" ]]; then
                 msg=$(date)
         fi
-        printStyle "$(git add .)"
+        "$(git add .)"
         printStyle "$(git commit -m "$msg")"
         printStyle "$(git push origin main)"
 }
 
 
 all() {
-        for i in "${repose[@]}"; do
+        for i in "${repos[@]}"; do
                 echo -e "\033[1;32m$i\033[0m"
                 cd "$i"
                 pull
