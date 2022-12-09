@@ -2,7 +2,8 @@
 
 msg="$(date)"
 
-help=$(echo -e "# How to Use\n\n ___\n-h | --help for help\n-a | --all to update all\n-l | --list to choose from list\n" | gum format -t markdown)
+help=$(echo -e "# How to Use\n\n ___\n-h | --help for help\n-a | --all to update all\n-l | --list to choose from list\n-d | --daily updates repos in daily list"\
+        | gum format -t markdown)
 
 list=""
 
@@ -40,8 +41,10 @@ push(){
                 msg=$(date)
         fi
         git add .
-        printStyle "$(git commit -m "$msg")"
-        printStyle "$(git push origin main)"
+        val="$(git commit -m "$msg")"
+        printStyle "$val"
+        val="$(git push origin main)"
+        printStyle "$val"
 }
 
 
@@ -97,4 +100,6 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
 esac; shift; done
 if [[ "$1" == '--' ]]; then shift; fi
 
+printStyle "$help"
+exit
 
