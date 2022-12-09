@@ -43,7 +43,8 @@ push(){
         git add .
         val="$(git commit -m "$msg")"
         printStyle "$val"
-        val="$(git push origin main)"
+        val="$(echo $(git push origin main))"
+        wait 1s
         printStyle "$val"
 }
 
