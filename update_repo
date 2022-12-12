@@ -35,8 +35,8 @@ autoUpdate[0]="${repos[0]}"
 autoUpdate[1]="${repos[1]}"
 
 buildMsg() {
-        title="$1"
-        body="$2"
+        title="$2"
+        body="$1"
         echo $(cat <<EOF
 $title 
 =>
