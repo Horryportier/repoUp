@@ -41,8 +41,7 @@ buildMsg() {
         body="$@"
         echo $(cat <<EOF
 $title 
-=>
-$body
+=>$body
 EOF
        )
 }
