@@ -35,8 +35,8 @@ autoUpdate[0]="${repos[0]}"
 autoUpdate[1]="${repos[1]}"
 
 buildMsg() {
-        title="$2"
-        body="$1"
+        title="$1"
+        body="$@"
         echo $(cat <<EOF
 $title 
 =>
@@ -63,12 +63,9 @@ push(){
         git add .
 
         commit=$(echo -e "$(git commit -m "$msg")")
-        echo $commit
-        sleep 5s
         commitMsg="$(buildMsg "Commit" $commit)"
         echo $commitMsg
         pushMsg=$(echo -e "$(git push)")
-        sleep 5s
         printStyle "$(buildMsg "Push" $pushMsg)"
 }
 
