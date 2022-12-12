@@ -63,6 +63,7 @@ push(){
         git add .
 
         commit=$(echo -e "$(git commit -m "$msg")")
+        echo $commit
         sleep 5s
         commitMsg="$(buildMsg "Commit" $commit)"
         echo $commitMsg
