@@ -5,8 +5,11 @@ commitMsg=""
 pushMsg=""
 
 help=$(echo -e $(cat <<EOF
-# How to Use\n
+        # How to Use\n
 ___\n
+run {gitup} inside of repo to update it\n
+___\n
+# Flags:
 -h | --help for help\n
 -a | --all to update all\n
 -l | --list to choose from list\n
@@ -16,9 +19,6 @@ EOF
         | gum format -t markdown)
 
 list=""
-
-
-
 
 repos=()
 
@@ -46,7 +46,7 @@ EOF
 }
 
 printStyle() {
-        style=$(gum style --padding "1 5" --border double --border-foreground 249 "$@")
+        style=$(gum style --padding "1 5" --border rounded --border-foreground 249 "$@")
         if [[ -n "$style" ]]; then
                 echo -e "$style"
         fi
