@@ -40,8 +40,7 @@ buildMsg() {
         title="$1"
         body="$@"
         echo $(cat <<EOF
-$title 
-=>$body
+$body
 EOF
        )
 }
@@ -54,7 +53,7 @@ printStyle() {
 }
 
 pull(){
-        printStyle "$(buildMsg "Pull" $(echo -e $(git pull)))"
+        printStyle "$(buildMsg "Pull:" $(echo -e $(git pull)))"
 }
 
 push(){
@@ -67,7 +66,7 @@ push(){
         commitMsg="$(buildMsg "Commit:" "$commit")"
         pushMsg=$(echo -e "$(git push -q)")
         printStyle "$commitMsg"
-        printStyle "$(buildMsg "Push:" "$pushMsg")"
+        printStyle "$(buildMsg "Push: ✔️" "$pushMsg")"
 }
 
 
