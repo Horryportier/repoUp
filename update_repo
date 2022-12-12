@@ -64,12 +64,10 @@ push(){
         git add .
 
         commit=$(echo -e "$(git commit -m "$msg")")
-        commitMsg="$(buildMsg "Commit" $commit)"
-        printStyle $(cat <<EOF $commitMsg 
-EOF
-)
+        commitMsg="$(buildMsg "Commit" "$commit")"
         pushMsg=$(echo -e "$(git push)")
-        printStyle "$(buildMsg "Push" $pushMsg)"
+        printStyle "$commitMsg"
+        printStyle "$(buildMsg "Push" "$pushMsg")"
 }
 
 
