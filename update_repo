@@ -2,7 +2,15 @@
 
 msg="$(date)"
 
-help=$(echo -e "# How to Use\n\n ___\n-h | --help for help\n-a | --all to update all\n-l | --list to choose from list\n-d | --daily updates repos in daily list"\
+help=$(echo -e $(cat <<EOF
+# How to Use\n
+___\n
+-h | --help for help\n
+-a | --all to update all\n
+-l | --list to choose from list\n
+-d | --daily updates repos in daily list\n
+EOF
+)\
         | gum format -t markdown)
 
 list=""
@@ -26,16 +34,26 @@ autoUpdate=()
 autoUpdate[0]="${repos[0]}"
 autoUpdate[1]="${repos[1]}"
 
+buildMsg() {
+        title="$1"
+        body="$2"
+        echo $(cat <<EOF
+$title 
+=>
+$body
+EOF
+       )
+}
 
 printStyle() {
         style=$(gum style --padding "1 5" --border double --border-foreground 249 "$1")
-        if [[ -n "$style" ]]; then 
-        echo -e "$style"
+        if [[ -n "$style" ]]; then
+                echo -e "$style"
         fi
 }
 
 pull(){
-        printStyle "Pull$(git pull)"
+        printStyle "$(buildMsg "Pull" $(echo -e $(git pull)))"
 }
 
 push(){
@@ -43,9 +61,8 @@ push(){
                 msg=$(date)
         fi
         git add .
-        val="Commit$(git commit -m "$msg")"
-        printStyle "$val"
-        val="Push$(echo $(git push origin main))"
+        printStyle "$(buildMsg "Commit" $(echo -e $(git commit -m "$msg")))"
+        printStyle "$(buildMsg "Push" $(echo -e $(git push origin main)))"
 }
 
 
@@ -82,7 +99,7 @@ choose() {
 }
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
--a | --all )
+        -a | --all )
         all
         exit
         ;;
