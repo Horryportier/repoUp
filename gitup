@@ -25,7 +25,7 @@ repos=()
 # put your paths to yours repos here
 repos[0]="/home/$(whoami)/Documents/CheatSheet"
 repos[1]="/home/$(whoami)/Documents/dotfiles"
-repos[2]="/home/$(whoami)/Documents/update_repos"
+repos[2]="/home/$(whoami)/Documents/guiUp"
 repos[3]="/home/$(whoami)/Documents/TANGO-"
 repos[4]="/home/$(whoami)/go/src/github.com/go-jisho"
 
