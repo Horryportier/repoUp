@@ -64,7 +64,8 @@ push(){
 
         commit=$(echo -e "$(git commit -m "$msg")")
         sleep 5s
-        printStyle "$(buildMsg "Commit" $commit)"
+        commitMsg="$(buildMsg "Commit" $commit)"
+        echo $commitMsg
         pushMsg=$(echo -e "$(git push)")
         sleep 5s
         printStyle "$(buildMsg "Push" $pushMsg)"
