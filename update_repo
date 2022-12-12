@@ -62,10 +62,10 @@ push(){
         fi
         git add .
 
-        commit=$(git commit -m "$msg")
+        commit="$(git commit -m "$msg")"
         sleep 5s
         printStyle "$(buildMsg "Commit" $commit)"
-        pushMsg=$(git push)
+        pushMsg="$(git push)"
         sleep 5s
         printStyle "$(buildMsg "Push" $pushMsg)"
 }
