@@ -28,6 +28,8 @@ repos[1]="/home/$(whoami)/Documents/dotfiles"
 repos[2]="/home/$(whoami)/Documents/guiUp"
 repos[3]="/home/$(whoami)/Documents/TANGO-"
 repos[4]="/home/$(whoami)/go/src/github.com/go-jisho"
+repos[5]="/home/$(whoami)/Documents/openup"
+repos[6]="/home/$(whoami)/Documents/Watcher"
 
 
 autoUpdate=()
