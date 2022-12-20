@@ -14,6 +14,7 @@ ___\n
 -a | --all to update all\n
 -l | --list to choose from list\n
 -d | --daily updates repos in daily list\n
+-p | -pull pulls in current working dir\n
 EOF
 )\
         | gum format -t markdown)
@@ -127,6 +128,10 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
         ;;
 -d | --daily )
         auto
+        exit
+        ;;
+-p | --pull )
+        pull
         exit
         ;;
 esac; shift; done
