@@ -68,7 +68,7 @@ push(){
         commit=$(echo -e "$(git commit -m "$msg")")
         commitMsg="$(buildMsg "Commit:" "$commit")"
         printStyle "$commitMsg"
-        pushMsg=$(echo -e "$(git push)")
+        pushMsg=$(echo -e "$(git push origin "$(git symbolic-ref --short HEAD)")")
         printStyle "$(buildMsg "Push: ✔️" "$pushMsg")"
 }
 
