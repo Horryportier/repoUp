@@ -56,7 +56,7 @@ printStyle() {
 }
 
 pull(){
-        printStyle "$(buildMsg "Pull:" $(echo -e $(git pull)))"
+        printStyle "$(buildMsg "Pull:" $(echo -e $(git pull "$(git symbolic-ref --short HEAD)")))"
 }
 
 push(){
