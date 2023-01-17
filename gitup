@@ -45,7 +45,7 @@ buildMsg() {
         echo $(cat <<EOF
 $body
 EOF
-       )
+)
 }
 
 printStyle() {
@@ -56,7 +56,7 @@ printStyle() {
 }
 
 pull(){
-        printStyle "$(buildMsg "Pull:" $(echo -e $(git pull "$(git symbolic-ref --short HEAD)")))"
+        printStyle "$(buildMsg "Pull:" $(echo -e $(git pull )))"
 }
 
 push(){
@@ -95,8 +95,8 @@ current() {
         curr=$(pwd)
         echo -e "\033[1;32m$curr\033[0m"
         msg=$(gum input --placeholder "commit msg")
-        pull 
-        push 
+        pull
+        push
         exit
 }
 
