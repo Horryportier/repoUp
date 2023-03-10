@@ -49,7 +49,7 @@ EOF
 }
 
 printStyle() {
-        style=$(gum style --padding "1 5" --border rounded --border-foreground 249 "$@")
+        style=$(gum style --padding "1 5" "$@")
         if [[ -n "$style" ]]; then
                 echo -e "$style"
         fi
